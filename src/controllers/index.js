@@ -2,7 +2,7 @@ exports.getAll = (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err);
 
-    conn.query(`SELECT * FROM usuario`, (err, result) => {
+    conn.query(`SELECT * FROM employees`, (err, result) => {
       if (err) return res.send(err);
 
       res.json(result);
@@ -15,7 +15,7 @@ exports.getOne = (req, res) => {
     if (err) return res.send(err);
 
     conn.query(
-      `SELECT * FROM usuario WHERE id = ?`,
+      `SELECT * FROM employees WHERE id = ?`,
       [req.params.value],
       (err, result) => {
         if (err) return res.send(err);
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
   req.getConnection((err, conn) => {
     if (err) return res.send(err);
 
-    conn.query(`INSERT INTO usuario SET ? `, [req.body], (err, result) => {
+    conn.query(`INSERT INTO employees SET ? `, [req.body], (err, result) => {
       if (err) return res.send(err);
 
       res.send("Creación exitosa");
@@ -43,7 +43,7 @@ exports.update = (req, res) => {
     if (err) return res.send(err);
 
     conn.query(
-      `UPDATE usuario SET ? WHERE id = ?`,
+      `UPDATE employees SET ? WHERE id = ?`,
       [req.body, req.params.value],
       (err, result) => {
         if (err) return res.send(err);
@@ -59,7 +59,7 @@ exports.deleteItem = (req, res) => {
     if (err) return res.send(err);
 
     conn.query(
-      `DELETE FROM usuario WHERE id = ?`,
+      `DELETE FROM employees WHERE id = ?`,
       [req.params.value],
       (err, result) => {
         if (err) return res.send(err);
